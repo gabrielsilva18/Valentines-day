@@ -1,0 +1,27 @@
+.conteiner__content {
+  margin-left: 20px;
+  margin-right: 20px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.content__cover > img {
+  width: 100%;
+  max-width: 350px;
+  height: 100%;
+  max-height: 350px;
+  border-radius: 10px;
+}
+
+.content__description {
+  margin-top: 15px;
+}
+
+.content__description > p {
+  margin-top: 20px;
+  color: rgb(169, 164, 164);
+}
