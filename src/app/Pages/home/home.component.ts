@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ImageService } from '../../image.service'; // Importe o serviço
+import { ImageService } from '../../image.service';
+import { FrasesService } from '../../frases.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -12,25 +13,40 @@ export class HomeComponent implements OnInit {
   contentTitle: string = '';
   contentDescription: string = '';
   id: string | null = '0';
+  poem: string = '';
+  fraseCarinhosa: string = '';
+  textoBotaoFotos: string = 'Mostrar Fotos';
 
   constructor(
     private route: ActivatedRoute,
-    private imageService: ImageService // Injete o serviço
+    private imageService: ImageService,
+    private frasesService: FrasesService
   ) {}
 
   ngOnInit(): void {
-    // Obtenha o parâmetro 'id' da rota
     this.route.paramMap.subscribe((paramMap) => {
-      this.id = paramMap.get('id'); // Acesse o parâmetro 'id' usando o método 'get'
+      this.id = paramMap.get('id');
       this.setValuesToComponent();
+      this.setFraseCarinhosa();
     });
   }
 
-  // Setar valores para os conteúdos, buscando através do serviço de imagens aleatórias
+  atualizarFotos() {
+    this.setValuesToComponent();
+    this.setFraseCarinhosa();
+
+    if (this.textoBotaoFotos === 'Mostrar Fotos') {
+      this.textoBotaoFotos = 'Atualizar Fotos';
+    }
+  }
+
   setValuesToComponent() {
-    // Use o método getImagesToFillScreen() para obter uma lista de imagens aleatórias
     this.imageService.getRandomImage().subscribe((imageUrls) => {
       this.photoCovers = imageUrls;
     });
+  }
+
+  setFraseCarinhosa() {
+    this.fraseCarinhosa = this.frasesService.getFraseCarinhosaAleatoria();
   }
 }

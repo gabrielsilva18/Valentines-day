@@ -1,42 +1,53 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs'; // Importe 'of' do pacote rxjs
+import { Observable, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ImageService {
   private imagens: string[] = [];
+  private apiUrl = 'http://localhost:3000/listar-imagens';
 
   constructor(private http: HttpClient) {
-    const NUMERO_DE_IMAGENS = 80; // Substitua pelo número total de imagens que você tem
-
-    for (let i = 1; i <= NUMERO_DE_IMAGENS; i++) {
-      this.imagens.push(`assets/imagens/${i}.jpg`);
-    }
+    this.fetchImagesFromServer();
   }
+
+  private fetchImagesFromServer() {
+    this.http
+      .get<string[]>(this.apiUrl)
+      .pipe(
+        catchError((error) => {
+          console.error('Erro ao obter a lista de imagens:', error);
+          return of([]); // Retornar um array vazio em caso de erro
+        })
+      )
+      .subscribe((imageUrls) => {
+        this.imagens = imageUrls;
+      });
+  }
+
   getRandomImage(): Observable<string[]> {
-    // Obtenha o tamanho da tela
+    if (this.imagens.length === 0) {
+      return of([]);
+    }
+
     const screenWidth = window.innerWidth;
     const screenHeight = window.innerHeight;
+    const averageImageWidth = 150;
+    const averageImageHeight = 150;
 
-    // Calcule o tamanho médio de cada imagem
-    const averageImageWidth = 200; // Substitua pelo tamanho médio das suas imagens
-    const averageImageHeight = 200; // Substitua pelo tamanho médio das suas imagens
-
-    // Calcule quantas imagens caberão horizontalmente e verticalmente
     const imagesPerRow = Math.floor(screenWidth / averageImageWidth);
     const rows = Math.floor(screenHeight / averageImageHeight);
+    const totalImages = imagesPerRow * rows;
 
-    // Calcule o total de imagens necessárias
-    const totalImages = 80;
-
-    // Mantenha um conjunto para controlar quais imagens já foram selecionadas
     const selectedIndexes = new Set<number>();
-
-    // Retorne um array de URLs de imagens aleatórias com base no total calculado
     const randomImages: string[] = [];
-    while (randomImages.length < totalImages) {
+    while (
+      randomImages.length < totalImages &&
+      randomImages.length < this.imagens.length
+    ) {
       const randomIndex = Math.floor(Math.random() * this.imagens.length);
       if (!selectedIndexes.has(randomIndex)) {
         selectedIndexes.add(randomIndex);

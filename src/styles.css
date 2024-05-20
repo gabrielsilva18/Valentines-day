@@ -1,13 +1,64 @@
-/* You can add global styles to this file, and also import other style files */
+/* Estilos globais */
 * {
-  margin: 0; /*resetando a margem e o padding*/
+  margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: #111111;
-  color: white;
+  background: url("./sky.jpg") fixed;
+  color: rgb(4, 3, 3);
   font-family: "Segoe UI";
 }
 
 a {
   text-decoration: none;
+}
+
+/* Estilo para a div que contém os botões e a frase */
+.button-container {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Espaçamento entre os elementos */
+  margin-bottom: 10px; /* Espaçamento inferior para os botões */
+}
+
+/* Estilo para o botão Gerador de Frases */
+button.Gerador_frases {
+  padding: 10px 20px;
+  background-color: transparent;
+  background-image: linear-gradient(to right, #0578f2, #0578f2);
+  color: #050404;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover.Gerador_frases {
+  background-color: transparent;
+  background-image: linear-gradient(to right, #ff1313, #ff1313);
+  color: white;
+}
+
+/* Estilo para o botão Gerador de Fotos */
+button.Gerador_fotos {
+  padding: 10px 20px;
+  background-color: transparent;
+  background-image: linear-gradient(to right, #fc13ec, #fc13ec);
+  color: #050404;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover.Gerador_fotos {
+  background-color: transparent;
+  background-image: linear-gradient(to right, #ffffff, #ffffff);
+  color: #fc13ec;
+}
+
+/* Estilo para o container da frase */
+.frase-container {
+  margin-left: 10px; /* Espaçamento à esquerda da frase */
+  color: #050404; /* Cor do texto da frase */
+  font-size: 16px; /* Tamanho do texto da frase */
 }

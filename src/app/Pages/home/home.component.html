@@ -1,4 +1,3 @@
-<!--<div class="stars">-->
 <app-menu-title></app-menu-title>
 <div class="small-card-container">
   <div *ngFor="let imageUrl of photoCovers" class="small-card-image">
@@ -6,8 +5,18 @@
   </div>
   <div class="small-card-content">
     <h3>{{ contentDescription }}</h3>
-    <!-- quero que essa descrição so seja acessada em caso de clique, ai será carregado um poema-->
-    <!-- Adicione outros conteúdos aqui, se necessário -->
+    <div class="botao-atualizar">
+      <div class="button-container">
+        <button class="Gerador_fotos" (click)="atualizarFotos()">
+          {{ textoBotaoFotos }}
+        </button>
+        <button class="Gerador_frases" (click)="setFraseCarinhosa()">
+          Gerar Frase Carinhosa
+        </button>
+        <div class="frase-container">
+          <p>{{ fraseCarinhosa }}</p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-<!--</div>-->

@@ -20,31 +20,20 @@
 
 .small-card-image {
   margin-right: 10px;
+  margin-bottom: 10px;
 }
 
 .small-card-image img {
   width: 220px;
   height: 220px;
   object-fit: cover;
-  border-radius: 5px;
+  border-radius: 8px;
 }
 
 .small-card-content {
-  padding: 10px;
+  padding: 15px;
 }
 
 .small-card-content h3 {
   margin: 0;
 }
-
-/*
-.stars {
-  z-index: -1;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("stars.png"); /* Adiciona a imagem de estrelas
-  animation: moveStars 100s linear infinite; /* Define a animação das estrelas
-}*/
