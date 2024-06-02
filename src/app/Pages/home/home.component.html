@@ -1,22 +1,42 @@
-<app-menu-title></app-menu-title>
-<div class="small-card-container">
-  <div *ngFor="let imageUrl of photoCovers" class="small-card-image">
-    <img [src]="imageUrl" alt="Imagem do Card" />
-  </div>
-  <div class="small-card-content">
-    <h3>{{ contentDescription }}</h3>
-    <div class="botao-atualizar">
-      <div class="button-container">
-        <button class="Gerador_fotos" (click)="atualizarFotos()">
-          {{ textoBotaoFotos }}
-        </button>
-        <button class="Gerador_frases" (click)="setFraseCarinhosa()">
-          Gerar Frase Carinhosa
-        </button>
+<div class="Fundo_projeto">
+  <app-menu-title></app-menu-title>
+  <div class="main-content">
+    <div class="small-card-container">
+      <div *ngFor="let imageUrl of photoCovers" class="small-card-image">
+        <img [src]="imageUrl" alt="Imagem do Card" />
+      </div>
+      <div class="small-card-content">
+        <h3>{{ contentDescription }}</h3>
         <div class="frase-container">
+          <div class="hearts">
+            <span class="heart_top1">❤️ EU TE AMO!</span>
+            <span class="heart_top2">❤️</span>
+          </div>
+          <hr />
           <p>{{ fraseCarinhosa }}</p>
+          <div class="hearts">
+            <hr />
+          </div>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- Botão flutuante principal -->
+  <div class="floating-btn main-btn" (click)="toggleMenu()">Menu</div>
+
+  <!-- Botões flutuantes adicionais -->
+  <div class="floating-menu" [ngClass]="{ show: menuOpen }">
+    <div class="floating-btn Gerador_fotos" (click)="atualizarFotos()">
+      {{ textoBotaoFotos }}
+    </div>
+    <div class="floating-btn Gerador_frases" (click)="setFraseCarinhosa()">
+      Atualizar Frase
+    </div>
+
+    <!-- Controles de música -->
+    <div class="floating-btn music-control" (click)="toggleMusic()">
+      {{ isPlaying ? "Play music" : "Pause Music" }}
     </div>
   </div>
 </div>

@@ -1,15 +1,38 @@
 /* Estilos globais */
-* {
+html,
+body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background: url("./sky.jpg") fixed;
+  height: 100%;
+  width: 100%;
+  background: url("./sky.jpg") no-repeat center center fixed;
+  background-size: cover;
   color: rgb(4, 3, 3);
   font-family: "Segoe UI";
+}
+/* Estilos para o conteúdo principal */
+.main-content {
+  top: 0;
+  /* Espaçamento superior para evitar sobreposição com o título */
+  padding: 20px; /* Espaçamento interno do conteúdo */
+}
+
+.app-menu-title {
+  position: fixed; /* Mantém o título fixo na tela */
+  top: 0; /* Coloca o título no topo da página */
 }
 
 a {
   text-decoration: none;
+}
+
+.Fundo_projeto {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Estilo para a div que contém os botões e a frase */
@@ -20,45 +43,172 @@ a {
   margin-bottom: 10px; /* Espaçamento inferior para os botões */
 }
 
-/* Estilo para o botão Gerador de Frases */
-button.Gerador_frases {
-  padding: 10px 20px;
-  background-color: transparent;
-  background-image: linear-gradient(to right, #0578f2, #0578f2);
-  color: #050404;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-button:hover.Gerador_frases {
-  background-color: transparent;
-  background-image: linear-gradient(to right, #ff1313, #ff1313);
-  color: white;
-}
-
 /* Estilo para o botão Gerador de Fotos */
-button.Gerador_fotos {
-  padding: 10px 20px;
-  background-color: transparent;
-  background-image: linear-gradient(to right, #fc13ec, #fc13ec);
-  color: #050404;
+/* Estilo para a frase gerada */
+.frase-container p {
+  font-family: "Arial", sans-serif; /* Escolha uma fonte adequada */
+  font-size: 100px; /* Tamanho da fonte */
+  font-weight: bold; /* Texto em negrito */
+  color: white; /* Cor do texto */
+
+  text-align: center; /* Alinha o texto ao centro */
+}
+
+/* Estilos para botões flutuantes */
+/* Estilo para o botão menu */
+.floating-btn.main-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #5962b3 !important; /* Cor de fundo sólida */
+  color: #fff !important; /* Cor do texto */
   border: none;
-  border-radius: 5px;
+  border-radius: 50%;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);*/
+  transition: background-color 0.3s, box-shadow 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; /* Coloca o botão acima de outros elementos */
 }
 
-button:hover.Gerador_fotos {
-  background-color: transparent;
-  background-image: linear-gradient(to right, #ffffff, #ffffff);
-  color: #fc13ec;
+/* Estilo do botão Atualizar Fotos */
+.floating-btn.Gerador_fotos {
+  position: fixed;
+  bottom: 20px;
+  right: 100px;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #fbd9d7 !important; /* Cor de fundo sólida */
+  color: #fff !important; /* Cor do texto */
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s, box-shadow 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; /* Coloca o botão acima de outros elementos */
 }
 
-/* Estilo para o container da frase */
-.frase-container {
-  margin-left: 10px; /* Espaçamento à esquerda da frase */
-  color: #050404; /* Cor do texto da frase */
-  font-size: 16px; /* Tamanho do texto da frase */
+/* Estilo do botão Atualizar Frases */
+.floating-btn.Gerador_frases {
+  position: fixed;
+  bottom: 20px;
+  right: 260px;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #d181b4 !important; /* Cor de fundo sólida */
+  color: #fff !important; /* Cor do texto */
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s, box-shadow 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; /* Coloca o botão acima de outros elementos */
+}
+
+.floating-btn.music-control {
+  position: fixed;
+  bottom: 20px;
+  right: 180px;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #fbd9d7 !important; /* Cor de fundo sólida */
+  color: #fff !important; /* Cor do texto */
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s, box-shadow 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; /* Coloca o botão acima de outros elementos */
+}
+
+/*tamanho do botao menu*/
+.main-btn {
+  width: 50px; /* Tamanho do botão principal */
+  height: 50px; /* Tamanho do botão principal */
+}
+/*controla a posição do botao menu*/
+.floating-menu {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 999;
+}
+
+/*faz com que os botoes apareçam ao se clicar em menu*/
+.floating-menu.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/*Funciona como estilo dos botoes secundarios*/
+.floating-menu .floating-btn {
+  width: 50px; /* Tamanho dos botões no menu */
+  height: 50px; /* Tamanho dos botões no menu */
+  border-radius: 50%;
+  color: #fff !important; /* Cor do texto */
+  font-size: 16px;
+}
+/* Efeito de hover para os botões flutuantes */
+.floating-btn:hover {
+  transform: scale(
+    1.1
+  ); /* Aumenta ligeiramente o tamanho do botão ao passar o mouse */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Sombra mais pronunciada ao passar o mouse */
+}
+
+/* Efeito ao clicar nos botões flutuantes */
+.floating-btn:active {
+  transform: scale(0.9); /* Diminui ligeiramente o tamanho do botão ao clicar */
+  box-shadow: none; /* Remove a sombra ao clicar */
+}
+/*
+.heart_top1 {
+  float: left;
+  margin-top: 10px;
+}
+
+.heart_top2 {
+  float: right;
+  margin-top: 10px;
+}
+*/
+hr {
+  border: none; /* Remove a borda padrão */
+  height: 2px; /* Define a altura do hr */
+  background-color: #ccc; /* Cor de fundo do hr */
+  margin: 20px 0; /* Espaçamento superior e inferior */
+}
+
+/* Estilo para os corações */
+.hearts {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px; /* Espaçamento inferior */
+}
+
+/* Estilo para os corações individuais */
+.heart_top1,
+.heart_top2 {
+  font-size: 24px; /* Tamanho dos corações */
+  margin: 0 5px; /* Espaçamento entre os corações */
 }

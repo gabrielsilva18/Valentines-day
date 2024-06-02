@@ -6,21 +6,39 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class FrasesService {
-  frases: string[] = this.removerDuplicatas(frasesCarinhosas.frases); // Remover frases duplicadas ao inicializar o serviço
+  private frases: string[] = []; // Lista de frases disponíveis
+  private usedFrases: string[] = []; // Lista de frases já utilizadas
   private apiUrl = './frases_carinhosas.json'; // Caminho para o arquivo JSON local
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.initFrases(); // Inicializa as frases ao criar o serviço
+  }
+
+  private initFrases(): void {
+    // Remove frases duplicadas e inicia a lista de frases disponíveis
+    this.frases = this.removerDuplicatas(frasesCarinhosas.frases);
+  }
 
   addFraseCarinhosa(frase: string): void {
     if (!this.frases.includes(frase)) {
       this.frases.push(frase);
-      this.saveFrasesToJson(); // Salvar frases atualizadas no arquivo JSON
+      this.saveFrasesToJson(); // Salva frases atualizadas no arquivo JSON
     }
   }
 
   getFraseCarinhosaAleatoria(): string {
-    const index = Math.floor(Math.random() * this.frases.length);
-    return this.frases[index];
+    if (this.frases.length === 0) {
+      return ''; // Retorna vazio se não houver frases disponíveis
+    }
+
+    const randomIndex = Math.floor(Math.random() * this.frases.length);
+    const randomFrase = this.frases[randomIndex];
+
+    // Move a frase utilizada para a lista de frases já utilizadas
+    this.usedFrases.push(randomFrase);
+    this.frases.splice(randomIndex, 1); // Remove a frase utilizada da lista de frases disponíveis
+
+    return randomFrase;
   }
 
   private removerDuplicatas(frases: string[]): string[] {
