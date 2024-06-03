@@ -5,8 +5,14 @@ const cors = require("cors");
 
 const app = express();
 
-app.use(cors());
+const corsOptions = {
+  origin: "https://valentines-day-three.vercel.app/", // Substitua pelo seu domínio real no Vercel
+  optionsSuccessStatus: 200,
+};
 
+app.use(cors(corsOptions));
+
+// Caminho das imagens, ajustado para produção
 const imagensFolder = path.join(__dirname, "..", "src", "assets", "imagens"); // Caminho
 
 console.log("Pasta de imagens:", imagensFolder); // Log da pasta de imagens
