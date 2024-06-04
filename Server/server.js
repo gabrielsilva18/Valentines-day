@@ -6,8 +6,9 @@ const cors = require("cors");
 const app = express();
 
 app.use(cors());
+app.use(express.static(path.join(__dirname, "..", "dist"))); // Servir arquivos estáticos
 
-const imagensFolder = path.join(__dirname, "..", "src", "assets", "imagens"); // Caminho
+const imagensFolder = path.join(__dirname, "..", "src", "assets", "imagens"); // Caminho correto para as imagens
 
 console.log("Pasta de imagens:", imagensFolder); // Log da pasta de imagens
 
@@ -23,6 +24,12 @@ app.get("/listar-imagens", (req, res) => {
   }
 });
 
-app.listen(3000, () => {
-  console.log("Servidor Node.js rodando na porta 3000");
+// Serve o index.html para todas as outras rotas
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "..", "dist", "index.html"));
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Servidor Node.js rodando na porta ${PORT}`);
 });
