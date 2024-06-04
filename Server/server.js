@@ -5,28 +5,24 @@ const cors = require("cors");
 
 const app = express();
 
-// Configuração do CORS para permitir todas as origens (para testes)
 app.use(cors());
 
-const imagensFolder = path.join(__dirname, "..", "src", "assets", "imagens");
+const imagensFolder = path.join(__dirname, "..", "src", "assets", "imagens"); // Caminho
 
-console.log("Pasta de imagens:", imagensFolder);
+console.log("Pasta de imagens:", imagensFolder); // Log da pasta de imagens
 
 app.get("/listar-imagens", (req, res) => {
-  console.log("Recebida requisição para listar imagens");
   try {
     const files = fs.readdirSync(imagensFolder);
-    console.log("Arquivos encontrados:", files);
+    console.log("Arquivos encontrados:", files); // Log dos arquivos encontrados
     const imageUrls = files.map((file) => `assets/imagens/${file}`);
     res.json(imageUrls);
   } catch (error) {
-    console.error("Erro ao listar imagens:", error);
-    res.status(500).send("Erro ao listar imagens");
+    console.error("Erro ao listar imagens:", error); // Log do erro
+    res.status(500).send("Erro ao listar imagens"); // Resposta de erro
   }
 });
 
-const port = process.env.PORT || 3000;
-
-app.listen(port, () => {
-  console.log(`Servidor Node.js rodando na porta ${port}`);
+app.listen(3000, () => {
+  console.log("Servidor Node.js rodando na porta 3000");
 });
