@@ -8,7 +8,7 @@ import { catchError } from 'rxjs/operators';
 })
 export class ImageService {
   private imagens: string[] = [];
-  private apiUrl = '/listar-imagens'; // Ajuste para funcionar em produção no Vercel
+  private apiUrl = 'http://localhost:3000/listar-imagens';
 
   constructor(private http: HttpClient) {
     this.fetchImagesFromServer();
