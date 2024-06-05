@@ -8,7 +8,7 @@ import { catchError } from 'rxjs/operators';
 })
 export class ImageService {
   private imagens: string[] = [];
-  private apiUrl = 'http://localhost:3000/listar-imagens';
+  private apiUrl = 'https://superlative-crisp-3a8a58.netlify.app/';
 
   constructor(private http: HttpClient) {
     this.fetchImagesFromServer();
