@@ -8,7 +8,7 @@ import { catchError } from 'rxjs/operators';
 })
 export class ImageService {
   private imagens: string[] = [];
-  private apiUrl = 'https://valentine-day-19.netlify.app/';
+  private apiUrl = 'http://localhost:3000/listar-imagens';
 
   constructor(private http: HttpClient) {
     this.fetchImagesFromServer();

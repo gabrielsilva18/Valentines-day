@@ -180,17 +180,7 @@ a {
   transform: scale(0.9); /* Diminui ligeiramente o tamanho do botão ao clicar */
   box-shadow: none; /* Remove a sombra ao clicar */
 }
-/*
-.heart_top1 {
-  float: left;
-  margin-top: 10px;
-}
 
-.heart_top2 {
-  float: right;
-  margin-top: 10px;
-}
-*/
 hr {
   border: none; /* Remove a borda padrão */
   height: 2px; /* Define a altura do hr */
